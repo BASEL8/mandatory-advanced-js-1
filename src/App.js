@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       user: "",
-      login: false
+      login: null
     };
     this.handelUserName = this.handelUserName.bind(this);
     this.logout = this.logout.bind(this);
@@ -18,14 +18,16 @@ class App extends Component {
       user: name,
       login: name.length >=1 && name.length <=12 && re.exec(name)!==null 
     });
+    console.log(name.length >=1 && name.length <=12 && re.exec(name)!==null)
   }
   logout() {
     this.setState({
       user: "",
-      login: !this.state.login
+      login: false
     });
   }
   render() {
+    console.log(this.state.login)
     const { logout, state, handelUserName} = this;
     if (state.login) {
       return <ChatBox userName={state.user} logout={logout} />;
@@ -33,7 +35,7 @@ class App extends Component {
       return (
         <div>
           <h1>Bla Bla Bla</h1>
-          <Login UserName={handelUserName} login={state.login} />
+          <Login UserName={handelUserName} />
         </div>
       );
     }
