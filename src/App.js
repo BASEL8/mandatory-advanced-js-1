@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Login from "./Login";
 import ChatBox from "./ChatBox";
-let re = /^[\w\s.-]+$/igm;
+let re = /^[\w\s.-]+$/gim;
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,9 +16,8 @@ class App extends Component {
   handelUserName(name) {
     this.setState({
       user: name,
-      login: name.length >=1 && name.length <=12 && re.exec(name)!==null 
+      login: name.length >= 1 && name.length <= 12 && re.exec(name) !== null
     });
-    console.log(name.length >=1 && name.length <=12 && re.exec(name)!==null)
   }
   logout() {
     this.setState({
@@ -27,8 +26,7 @@ class App extends Component {
     });
   }
   render() {
-    console.log(this.state.login)
-    const { logout, state, handelUserName} = this;
+    const { logout, state, handelUserName } = this;
     if (state.login) {
       return <ChatBox userName={state.user} logout={logout} />;
     } else {
